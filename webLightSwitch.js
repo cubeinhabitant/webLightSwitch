@@ -67,6 +67,11 @@ function on(response, request) {
 		device = query.device;
 	}
 
+	if ((device < 0) || (DEVICES[device] == null)) {
+		_contentControl(response, request);
+		return;
+	}
+
 	console.log("Request handler 'on' was called.");
         console.log("Turning on: " + DEVICES[device].name + ' at address: ' + DEVICES[device].address);
 
@@ -100,6 +105,11 @@ function off(response, request) {
 
 	if ((query !== undefined) && (query.device !== undefined)) {
 		device = query.device;
+	}
+
+	if ((device < 0) || (DEVICES[device] == null)) {
+		_contentControl(response, request);
+		return;
 	}
 
 	console.log("Request handler 'off' was called.");
